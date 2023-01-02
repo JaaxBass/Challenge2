@@ -25,7 +25,7 @@ class Program
         employee.AddGrade(Lap4time);
         var stat = employee.GetStatistics();
 
-        Console.WriteLine($"The driver {employee.name} has completed the track with the following results:");
+        Console.WriteLine($"The driver {employee.Name} has completed the track with the following results:");
         Console.WriteLine($"Average track time: {stat.Average}s from {employee.grades.Count} Laps");
         Console.WriteLine($"The best track time: {stat.Low}s");
         Console.WriteLine($"The lowest track time: {stat.High}s");

@@ -5,12 +5,13 @@ namespace ChallengeApp
 {
     public class Employee
     {
-        public string name;
+        //public string name;
         public List<double> grades = new List<double>();
         public Employee(string name)
         {       
-            this.name = name;
+            this.Name = name;
         }
+        public string Name{get; }
         public void AddGrade(double grade)
         {
             this.grades.Add(grade);
