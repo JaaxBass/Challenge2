@@ -11,11 +11,33 @@ namespace ChallengeApp
         {       
             this.Name = name;
         }
-        public string Name{get; }
+        public string Name{get; set;}
         public void AddGrade(double grade)
         {
             this.grades.Add(grade);
         }   
+
+        public void AddGradeToStringIfDouble(string grade)
+        {
+            if(double.TryParse(grade, out double result) && result >=0 && result <=100)
+            {
+                this.grades.Add(result);
+                Console.WriteLine($"Grade: {result} student {Name} got correct grade {result}.");
+            }
+            else
+            {
+                if(result <0 || result >100)
+                {
+                    Console.WriteLine($"Grade: {result} is over the limit. Try again."); 
+                }
+                else
+                {
+                    Console.WriteLine($"Grade: {result} is not correct. Try again.");
+                }
+               
+            }
+        }
+
     public Statistics GetStatistics()
     {
         var result = new Statistics();

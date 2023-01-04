@@ -7,22 +7,28 @@ class Program
     {
         
         static void Main(string[] args)
-        {    
-        Console.WriteLine("Insert driver name:");
+        {  
+        Console.Clear(); 
+        Console.WriteLine("Insert student name:");
         var employee = new Employee(Console.ReadLine());
 
-        Console.WriteLine("Enter the time of first lap:");
-        double Lap1time = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("Enter the time of second lap:");
-        double Lap2time = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("Enter the time of third lap:");
-        double Lap3time = Convert.ToDouble(Console.ReadLine());
-        Console.WriteLine("Enter the time of fourth lap:");
-        double Lap4time = Convert.ToDouble(Console.ReadLine());
-        employee.AddGrade(Lap1time);  
-        employee.AddGrade(Lap2time);
-        employee.AddGrade(Lap3time);
-        employee.AddGrade(Lap4time);
+        //Console.WriteLine("Enter the time of first lap:");
+        //double Lap1time = Convert.ToDouble(Console.ReadLine());
+        //Console.WriteLine("Enter the time of second lap:");
+        //double Lap2time = Convert.ToDouble(Console.ReadLine());
+        //Console.WriteLine("Enter the time of third lap:");
+        //double Lap3time = Convert.ToDouble(Console.ReadLine());
+        //Console.WriteLine("Enter the time of fourth lap:");
+        //double Lap4time = Convert.ToDouble(Console.ReadLine());
+        //employee.AddGrade(Lap1time);  
+        //employee.AddGrade(Lap2time);
+        //employee.AddGrade(Lap3time);
+        //employee.AddGrade(Lap4time);
+        employee.AddGradeToStringIfDouble("21,37");
+        employee.AddGradeToStringIfDouble("12");
+        employee.AddGradeToStringIfDouble("-55");
+        employee.AddGradeToStringIfDouble("21");
+        employee.AddGradeToStringIfDouble("220");
         var stat = employee.GetStatistics();
 
         Console.WriteLine($"The driver {employee.Name} has completed the track with the following results:");

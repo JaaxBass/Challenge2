@@ -7,14 +7,14 @@ namespace Challenge.Tests
     public class UnitTest1
     {
         [Fact]
-        public async void Test1()
+        public void Test1()
         {
             // arrange
             var driver = new Employee("Jacek");
             driver.AddGrade(10.0);
             driver.AddGrade(20.0);
             driver.AddGrade(10.0);
-            
+
             // act
             var result = driver.GetStatistics();
 
