@@ -38,6 +38,31 @@ namespace ChallengeApp
             }
         }
 
+public void AddNameCheckIsItDigit(string name)
+        {
+            var nameCheck = true;
+           foreach (var n in name)
+           {
+            if(char.IsDigit(n))
+            {
+                nameCheck = false;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"The following name: {name} has digit. The name: {name} doesn't meet conditions.");
+                Console.WriteLine($"The result of operation equals: {nameCheck}");
+                Console.ResetColor();
+            break;
+            }  
+           }
+             if(nameCheck)
+             {
+                this.Name = name;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"The following name: {name} meet the conditions. The name: {name} was added to the system.");
+                Console.WriteLine($"The result of operation equals: {nameCheck}"); 
+                Console.ResetColor();
+            }
+        }
+        
     public Statistics GetStatistics()
     {
         var result = new Statistics();
