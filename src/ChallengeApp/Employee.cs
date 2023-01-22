@@ -7,12 +7,15 @@ namespace ChallengeApp
     {
         public List<double> grades = new List<double>();
         
-
-        public Employee(string name)
+        public Employee(string name, string surname)
         {       
             this.Name = name;
+            this.Surname = surname;
         }
-        public string Name{get; set;}
+        public string Name {get; set;}
+
+        public string Surname {get; set;}
+
         public void AddGrade(double grade)
         {
             this.grades.Add(grade);
@@ -34,9 +37,9 @@ namespace ChallengeApp
                 "5-" => 4.75,
                 "1" or "2" or "3" or "4" or "5" => double.Parse(rate),
                 _ => throw new ArgumentException($"Inserted grade is out of range. Valid grade in range of (+/- 1 to 5)")
-
             };
             this.grades.Add(grade);
+            
             Console.WriteLine($"Grade {grade} was added.");
         }
         public void AddGradeToStringIfDouble(string grade)

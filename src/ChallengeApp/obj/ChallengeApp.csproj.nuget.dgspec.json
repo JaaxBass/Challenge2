@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jax\\Desktop\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj": {}
+    "C:\\KursC#\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jax\\Desktop\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj": {
+    "C:\\KursC#\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jax\\Desktop\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj",
+        "projectUniqueName": "C:\\KursC#\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj",
         "projectName": "ChallengeApp",
-        "projectPath": "C:\\Users\\jax\\Desktop\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj",
-        "packagesPath": "C:\\Users\\jax\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jax\\Desktop\\Program\\Challenge\\src\\ChallengeApp\\obj\\",
+        "projectPath": "C:\\KursC#\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj",
+        "packagesPath": "C:\\Users\\Jacek\\.nuget\\packages\\",
+        "outputPath": "C:\\KursC#\\Program\\Challenge\\src\\ChallengeApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jax\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Jacek\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net5.0"

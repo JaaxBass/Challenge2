@@ -9,12 +9,12 @@ class Program
         static void Main(string[] args)
         { 
         Console.Clear();      
-        Console.WriteLine("Insert student name:");
-        var employee = new Employee(Console.ReadLine());
+        Console.WriteLine("Insert student name and surname:");
+        var employee = new Employee(Console.ReadLine(), Console.ReadLine() );
         
         while(true)
         {
-            Console.WriteLine($"Insert a grade for the student: {employee.Name}, or press q to exit.");
+            Console.WriteLine($"Insert a grade for the student: {employee.Name} {employee.Surname}, or press q to exit.");
             var input = Console.ReadLine();
 
             if(input == "q")
@@ -39,10 +39,10 @@ class Program
         
         var stat = employee.GetStatistics();
 
-        Console.WriteLine($"The student {employee.Name} has completed the task with the following grades:");
-        Console.WriteLine($"Student {employee.Name} average grades are: {stat.Average}s from {employee.grades.Count} Grades.");
-        Console.WriteLine($"Student {employee.Name} lowest grade is: {stat.Low}.");
-        Console.WriteLine($"Student {employee.Name} highest grade is: {stat.High}.");
+        Console.WriteLine($"The student {employee.Name} {employee.Surname} has completed the task with the following grades:");
+        Console.WriteLine($"Student {employee.Name} {employee.Surname} average grades are: {stat.Average}s from {employee.grades.Count} Grades.");
+        Console.WriteLine($"Student {employee.Name} {employee.Surname} lowest grade is: {stat.Low}.");
+        Console.WriteLine($"Student {employee.Name} {employee.Surname} highest grade is: {stat.High}.");
         Console.WriteLine($"Difference between highest and lowest grade is: {stat.Difference}.");
         
         //employee.AddGradeToStringIfDouble("0,0");

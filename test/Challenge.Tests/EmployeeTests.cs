@@ -10,7 +10,7 @@ namespace Challenge.Tests
         public void Test1()
         {
             // arrange
-            var driver = new Employee("Jacek");
+            var driver = new Employee("Jacek", "Nowak");
             driver.AddGrade(10.0);
             driver.AddGrade(20.0);
             driver.AddGrade(10.0);

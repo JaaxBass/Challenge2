@@ -6,6 +6,8 @@ namespace Challenge.Tests
 {
     public class TypeTests
     {
+        private string surname;
+
         [Fact]
         public void GetEmployeeReturnDifferentsObjects()
         {
@@ -21,7 +23,7 @@ namespace Challenge.Tests
         public void GetStatisticsReturnsCorrectCalculations()
         {
             // arrange
-            var emp3 = new Employee("Tomek"); 
+            var emp3 = new Employee("Tomek", "Marcinkowski"); 
             emp3.AddGrade(2.0);
             emp3.AddGrade(3.0);
             emp3.AddGrade(6.0);
@@ -37,21 +39,22 @@ namespace Challenge.Tests
         public void CanSetNameFromReference()
         {
             // arrange
-            var emp4 = new Employee("Tomek"); 
+            var emp4 = new Employee("Tomek", "Marcinkowski"); 
            
             // act
-            this.SetName(emp4, "NewName");
+            this.SetName(emp4, "NewName", "NewSurname");
             // assert 
             Assert.Equal("NewName", emp4.Name);
         }
         private Employee GetEmployee(string name)
         {
-            return new Employee(name);
+            return new Employee(name, surname);
         }
 
-        private void SetName(Employee employee, string name)
+        private void SetName(Employee employee, string name, string surname)
         {
             employee.Name = name;
+            employee.Surname = surname;
         }
     }
 }
