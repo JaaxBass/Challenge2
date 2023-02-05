@@ -6,7 +6,35 @@ namespace Challenge.Tests
 {
     public class TypeTests
     {
-        private string surname;
+
+        public delegate string WriteMessage(string message);
+
+        int counter = 0;
+
+        [Fact]
+        public void WriteMessageDelegateCanPointToMethod()
+        {
+            WriteMessage del = ReturnMessage;
+            del += ReturnMessage;
+            del += ReturnMessage2;
+
+            var result = del("HELLO!");
+
+            Assert.Equal(3, counter);
+
+        }
+
+        string ReturnMessage(string message)
+        {
+            counter ++;
+            return message;
+        }
+
+        string ReturnMessage2(string message)
+        {
+            counter ++;
+            return message.ToUpper();
+        }
 
         [Fact]
         public void GetEmployeeReturnDifferentsObjects()
@@ -23,7 +51,7 @@ namespace Challenge.Tests
         public void GetStatisticsReturnsCorrectCalculations()
         {
             // arrange
-            var emp3 = new Employee("Tomek", "Marcinkowski"); 
+            var emp3 = new Employee("Tomek"); 
             emp3.AddGrade(2.0);
             emp3.AddGrade(3.0);
             emp3.AddGrade(6.0);
@@ -39,22 +67,24 @@ namespace Challenge.Tests
         public void CanSetNameFromReference()
         {
             // arrange
-            var emp4 = new Employee("Tomek", "Marcinkowski"); 
+            var emp4 = new Employee("Tomek"); 
            
             // act
-            this.SetName(emp4, "NewName", "NewSurname");
+            this.SetName(emp4, "NewName");
+            
             // assert 
             Assert.Equal("NewName", emp4.Name);
+            
         }
         private Employee GetEmployee(string name)
         {
-            return new Employee(name, surname);
+            return new Employee(name);
         }
 
-        private void SetName(Employee employee, string name, string surname)
+        private void SetName(Employee employee, string name)
         {
             employee.Name = name;
-            employee.Surname = surname;
-        }
+     
+       }
     }
 }

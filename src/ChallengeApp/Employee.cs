@@ -3,22 +3,52 @@ using System.Collections.Generic;
 
 namespace ChallengeApp
 {
-    public class Employee
+     public delegate void GradeAddedDelegate(object sender, EventArgs args);
+    public class NamedObject :object
     {
+        public NamedObject(string name)
+        {
+            this.Name = name;
+        }
+
+        public string Name {get; set;}
+    }
+
+    public interface IEmployee
+    {
+        void AddGrade(double grade);
+        Statistics GetStatistics();
+        string Name {get; }
+        event GradeAddedDelegate GradeAdded;       
+    }
+
+    public abstract class EmployeeBase : NamedObject, IEmployee
+    {
+        public EmployeeBase(string name) : base(name)
+        {
+        }
+
+        public event GradeAddedDelegate GradeAdded;
+
+        public abstract void AddGrade(double grade);
+
+        public virtual Statistics GetStatistics()
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class Employee : EmployeeBase
+    {
+        public event GradeAddedDelegate GradeAdded;
+        public event GradeAddedDelegate GradeAdded2;
         public List<double> grades = new List<double>();
         
-        public Employee(string name, string surname)
+        public Employee(string name): base(name)
         {       
-            this.Name = name;
-            this.Surname = surname;
         }
-        public string Name {get; set;}
-
-        public string Surname {get; set;}
-
-        public void AddGrade(double grade)
+        public override void AddGrade(double grade)
         {
-            this.grades.Add(grade);
+            this.grades.Add(grade);     
         }   
 
         public void AddGradeString(string rate)
@@ -39,6 +69,15 @@ namespace ChallengeApp
                 _ => throw new ArgumentException($"Inserted grade is out of range. Valid grade in range of (+/- 1 to 5)")
             };
             this.grades.Add(grade);
+
+             if(GradeAdded != null )
+            {
+                GradeAdded(this, new EventArgs());
+            }
+            if(grade < 3)
+            {
+                GradeAdded2(this, new EventArgs());
+            }
             
             Console.WriteLine($"Grade {grade} was added.");
         }
@@ -47,6 +86,7 @@ namespace ChallengeApp
             if(double.TryParse(grade, out double result) && result >=0 && result <=100)
             {
                 this.grades.Add(result);
+               
                 Console.WriteLine($"Grade: {result} student {Name} got correct grade {result}.");
             }
             else
@@ -78,7 +118,6 @@ public void AddNameCheckIsItDigit(string name)
                 break;
             }  
            }
-
             if(nameCheck)
             {
                 this.Name = name;
@@ -89,7 +128,7 @@ public void AddNameCheckIsItDigit(string name)
             }
         }
         
-    public Statistics GetStatistics()
+    public override Statistics GetStatistics()
     {
         var result = new Statistics();
 
