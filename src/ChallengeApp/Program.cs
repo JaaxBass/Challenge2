@@ -10,16 +10,16 @@ class Program
         {
             Console.Clear();
             Console.WriteLine("Insert student name:");
-            var employee = new Employee(Console.ReadLine());
+            var employee = new SavedEmployee(Console.ReadLine());
             employee.GradeAdded += OnGradeAdded;
-            employee.GradeAdded2 += OnGradeAddedUnderThree;
+           // employee.GradeAdded2 += OnGradeAddedUnderThree;
 
             EnterGrade(employee);
 
             var stat = employee.GetStatistics();
 
             Console.WriteLine($"The student {employee.Name} has completed the task with the following grades:");
-            Console.WriteLine($"Student {employee.Name} average grades are: {stat.Average}s from {employee.grades.Count} Grades.");
+            Console.WriteLine($"Student {employee.Name} average grades are: {stat.Average}s.");
             Console.WriteLine($"Student {employee.Name} lowest grade is: {stat.Low}.");
             Console.WriteLine($"Student {employee.Name} highest grade is: {stat.High}.");
             Console.WriteLine($"Difference between highest and lowest grade is: {stat.Difference}.");
@@ -30,14 +30,14 @@ class Program
             //employee.AddGradeToStringIfDouble("21");
             //employee.AddGradeToStringIfDouble("220");
 
-            employee.AddNameCheckIsItDigit("Maciek");
-            employee.AddNameCheckIsItDigit("W0jt6k");
-            employee.AddNameCheckIsItDigit("Radek");
-            employee.AddNameCheckIsItDigit("Pi0tr");
-            employee.ForLoopTest();
+            // employee.AddNameCheckIsItDigit("Maciek");
+            // employee.AddNameCheckIsItDigit("W0jt6k");
+            // employee.AddNameCheckIsItDigit("Radek");
+            // employee.AddNameCheckIsItDigit("Pi0tr");
+            // employee.ForLoopTest();
         }
 
-        private static void EnterGrade(Employee employee)
+        private static void EnterGrade(SavedEmployee employee)
         {
             while (true)
             {
@@ -50,7 +50,8 @@ class Program
                 }
                 try
                 {
-                    employee.AddGradeString(input);
+                    var grade = double.Parse(input);       
+                    employee.AddGrade(grade);
                 }
                 catch (FormatException ex)
                 {

@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace ChallengeApp
 {
      public delegate void GradeAddedDelegate(object sender, EventArgs args);
+     
     public class NamedObject :object
     {
         public NamedObject(string name)
@@ -28,34 +30,61 @@ namespace ChallengeApp
         {
         }
 
-        public event GradeAddedDelegate GradeAdded;
+        public abstract event GradeAddedDelegate GradeAdded;
 
         public abstract void AddGrade(double grade);
 
-        public virtual Statistics GetStatistics()
+        public abstract Statistics GetStatistics();
+        
+    }
+
+    public class SavedEmployee : EmployeeBase
+    {
+        public  SavedEmployee(string name) : base(name)
+        {
+        }
+
+        public override event GradeAddedDelegate GradeAdded;
+
+        public override void AddGrade(double grade)
+        {
+           using (var writer = File.AppendText($"{Name}.txt"))
+           using (var writer2 = File.AppendText("audit.txt"))
+           {
+                writer.WriteLine(grade);
+                writer2.WriteLine($"{grade}     {DateTime.UtcNow}");
+
+                if(GradeAdded != null )
+            {
+                GradeAdded(this, new EventArgs());
+            }
+           }
+        }
+        public override Statistics GetStatistics()
         {
             throw new NotImplementedException();
         }
     }
-    public class Employee : EmployeeBase
-    {
-        public event GradeAddedDelegate GradeAdded;
-        public event GradeAddedDelegate GradeAdded2;
-        public List<double> grades = new List<double>();
-        
-        public Employee(string name): base(name)
-        {       
-        }
-        public override void AddGrade(double grade)
-        {
-            this.grades.Add(grade);     
-        }   
 
-        public void AddGradeString(string rate)
-        {
-            var grade = rate switch
-            {
-                "1+" => 1.5,
+     public sealed class EmployeeInMemory : EmployeeBase
+     {
+         public override event GradeAddedDelegate GradeAdded;
+         public event GradeAddedDelegate GradeAdded2;
+         public List<double> grades = new List<double>();
+
+         public EmployeeInMemory(string name): base(name)
+         {       
+         }
+         public override void AddGrade(double grade)
+         {
+             this.grades.Add(grade);     
+         }   
+
+         public void AddGradeString(string rate)
+         {
+             var grade = rate switch
+             {
+                 "1+" => 1.5,
                 "2+" => 2.5,
                 "3+" => 3.5,
                 "4+" => 4.5,
@@ -78,32 +107,32 @@ namespace ChallengeApp
             {
                 GradeAdded2(this, new EventArgs());
             }
-            
+
             Console.WriteLine($"Grade {grade} was added.");
         }
         public void AddGradeToStringIfDouble(string grade)
         {
-            if(double.TryParse(grade, out double result) && result >=0 && result <=100)
+        if(double.TryParse(grade, out double result) && result >=0 && result <=100)
+        {
+            this.grades.Add(result);
+
+            Console.WriteLine($"Grade: {result} student {Name} got correct grade {result}.");
+        }
+        else
+        {
+            if(result <0 || result >100)
             {
-                this.grades.Add(result);
-               
-                Console.WriteLine($"Grade: {result} student {Name} got correct grade {result}.");
+                Console.WriteLine($"Grade: {result} is over the limit. Try again."); 
             }
             else
             {
-                if(result <0 || result >100)
-                {
-                    Console.WriteLine($"Grade: {result} is over the limit. Try again."); 
-                }
-                else
-                {
-                    Console.WriteLine($"Grade: {result} is not correct. Try again.");
-                }
-               
+                Console.WriteLine($"Grade: {result} is not correct. Try again.");
             }
+
+        }
         }
 
-public void AddNameCheckIsItDigit(string name)
+        public void AddNameCheckIsItDigit(string name)
         {
             var nameCheck = true;
            foreach (var n in name)
@@ -158,6 +187,6 @@ public void AddNameCheckIsItDigit(string name)
             Console.WriteLine($"{studentNames[index]} is {studentAge[index]} years old");
             Console.ResetColor();
         }
-    }     
+    }    
 }
 }
