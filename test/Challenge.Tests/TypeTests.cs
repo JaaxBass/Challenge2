@@ -51,7 +51,7 @@ namespace Challenge.Tests
         public void GetStatisticsReturnsCorrectCalculations()
         {
             // arrange
-            var emp3 = new SavedEmployee("Tomek"); 
+            var emp3 = new SavedStudent("Tomek"); 
             emp3.AddGrade(2.0);
             emp3.AddGrade(3.0);
             emp3.AddGrade(6.0);
@@ -67,7 +67,7 @@ namespace Challenge.Tests
         public void CanSetNameFromReference()
         {
             // arrange
-            var emp4 = new SavedEmployee("Tomek"); 
+            var emp4 = new SavedStudent("Tomek"); 
            
             // act
             this.SetName(emp4, "NewName");
@@ -76,12 +76,12 @@ namespace Challenge.Tests
             Assert.Equal("NewName", emp4.Name);
             
         }
-        private SavedEmployee GetEmployee(string name)
+        private SavedStudent GetEmployee(string name)
         {
-            return new SavedEmployee(name);
+            return new SavedStudent(name);
         }
 
-        private void SetName(SavedEmployee employee, string name)
+        private void SetName(SavedStudent employee, string name)
         {
             employee.Name = name;
      
