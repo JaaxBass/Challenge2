@@ -3,12 +3,12 @@ namespace ChallengeApp
     public interface IStudent
     {
         void AddGrade(double grade);
-        void AddGradeString(string rate);
+        void AddGrade(string grade);
         Statistics GetStatistics();
-        string Name {get; }
-        
+        string Name { get; }
+
     }
-  
+
 }
 
-        
+

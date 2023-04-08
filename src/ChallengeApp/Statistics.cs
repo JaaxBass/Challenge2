@@ -31,7 +31,7 @@ namespace ChallengeApp
         public void Add(double number)
         {
             Sum += number;
-            Count +=1;
+            Count += 1;
             Low = Math.Min(number, Low);
             High = Math.Max(number, High);
         }

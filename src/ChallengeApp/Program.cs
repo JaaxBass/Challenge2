@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace ChallengeApp
 {
-class Program
+    class Program
     {
-        
+
         static void Main(string[] args)
         {
             Console.Clear();
@@ -27,61 +27,60 @@ class Program
                 switch (userInput)
                 {
                     case "1":
-                    AddDataInMemory();
-                    break;
+                        AddDataInMemory();
+                        break;
 
                     case "2":
-                    SavedAddData();
-                    break;
+                        SavedAddData();
+                        break;
 
                     case "X":
-                    ExitProgram = true;
-                    break;
+                        ExitProgram = true;
+                        break;
 
                     default:
-                    WritelineColor(ConsoleColor.Red, "Invalid operation. \n");
-                    continue;
+                        WritelineColor(ConsoleColor.Red, "Invalid operation. \n");
+                        continue;
                 }
             }
             WritelineColor(ConsoleColor.DarkMagenta, "\n\nThank you and have a nice dayx! Press any key to Exit.");
             Console.ReadKey();
-        } 
+        }
 
         private static void AddDataInMemory()
         {
             Console.WriteLine("Insert student name:");
-            var employee = new StudentInMemory(Console.ReadLine());
-            employee.GradeAdded += OnGradeAdded;
-            employee.GradeAdded2 += OnGradeAddedUnderThree;
-            EnterGrade(employee);
+            var inMemoryStudent = new StudentInMemory(Console.ReadLine());
+            inMemoryStudent.GradeAdded += OnGradeAdded;
+            inMemoryStudent.GradeAddedUnder3 += OnGradeAddedUnderThree;
+            EnterGrade(inMemoryStudent);
 
-            var stat = employee.GetStatistics();
-            Console.WriteLine($"The student {employee.Name} has completed the task with the following grades:");
-            Console.WriteLine($"Student {employee.Name} average grades are: {stat.Average}s.");
-            Console.WriteLine($"Student {employee.Name} lowest grade is: {stat.Low}.");
-            Console.WriteLine($"Student {employee.Name} highest grade is: {stat.High}.");
-        }   
+            var stat = inMemoryStudent.GetStatistics();
+            Console.WriteLine($"The student {inMemoryStudent.Name} has completed the task with the following grades:");
+            Console.WriteLine($"Student {inMemoryStudent.Name} average grades are: {stat.Average}.");
+            Console.WriteLine($"Student {inMemoryStudent.Name} lowest grade is: {stat.Low}.");
+            Console.WriteLine($"Student {inMemoryStudent.Name} highest grade is: {stat.High}.");
+        }
 
         private static void SavedAddData()
         {
             Console.WriteLine("Insert student name:");
-            var employee = new SavedStudent(Console.ReadLine());
-            employee.GradeAdded += OnGradeAdded;
-            employee.GradeAdded2 += OnGradeAddedUnderThree;
-            EnterGrade(employee);
-            
-            var stat = employee.GetStatistics();
-            Console.WriteLine($"The student {employee.Name} has completed the task with the following grades:");
-            Console.WriteLine($"Student {employee.Name} average grades are: {stat.Average}s.");
-            Console.WriteLine($"Student {employee.Name} lowest grade is: {stat.Low}.");
-            Console.WriteLine($"Student {employee.Name} highest grade is: {stat.High}.");
-        }  
-        private static void EnterGrade(IStudent employee)
-        //private static void EnterGrade(EmployeeInMemory employee)
+            var studentSaved = new SavedStudent(Console.ReadLine());
+            studentSaved.GradeAdded += OnGradeAdded;
+            studentSaved.GradeAddedUnder3 += OnGradeAddedUnderThree;
+            EnterGrade(studentSaved);
+
+            var stat = studentSaved.GetStatistics();
+            Console.WriteLine($"The student {studentSaved.Name} has completed the task with the following grades:");
+            Console.WriteLine($"Student {studentSaved.Name} average grades are: {stat.Average}.");
+            Console.WriteLine($"Student {studentSaved.Name} lowest grade is: {stat.Low}.");
+            Console.WriteLine($"Student {studentSaved.Name} highest grade is: {stat.High}.");
+        }
+        private static void EnterGrade(IStudent student)
         {
             while (true)
             {
-                Console.WriteLine($"Insert a grade for the student: {employee.Name} , or press q to exit.");
+                Console.WriteLine($"Insert a grade for the student: {student.Name} , or press q to exit.");
                 var input = Console.ReadLine();
 
                 if (input == "q")
@@ -91,8 +90,8 @@ class Program
                 try
                 {
                     //double.Parse
-                    var grade = double.Parse(input);       
-                    employee.AddGrade(grade);
+                    var grade = double.Parse(input);
+                    student.AddGrade(grade);
                 }
                 catch (FormatException ex)
                 {

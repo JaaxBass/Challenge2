@@ -26,13 +26,13 @@ namespace Challenge.Tests
 
         string ReturnMessage(string message)
         {
-            counter ++;
+            counter++;
             return message;
         }
 
         string ReturnMessage2(string message)
         {
-            counter ++;
+            counter++;
             return message.ToUpper();
         }
 
@@ -41,50 +41,50 @@ namespace Challenge.Tests
         {
             // arrange
             var emp1 = GetEmployee("Jacek");
-            var emp2 = GetEmployee("Radek");  
+            var emp2 = GetEmployee("Radek");
             // assert
             Assert.NotSame(emp1, emp2);
-            Assert.False(Object.ReferenceEquals(emp1, emp2)); 
+            Assert.False(Object.ReferenceEquals(emp1, emp2));
         }
 
         [Fact]
         public void GetStatisticsReturnsCorrectCalculations()
         {
             // arrange
-            var emp3 = new SavedStudent("Tomek"); 
-            emp3.AddGrade(2.0);
-            emp3.AddGrade(3.0);
-            emp3.AddGrade(6.0);
+            var emp3 = new StudentInMemory("Tomek");
+            emp3.AddGrade(4);
+            emp3.AddGrade(4);
+            emp3.AddGrade(4);
             // act
             var result = emp3.GetStatistics();
             // assert 
-            Assert.Equal(3.7, result.Average,1 );
-            Assert.Equal(2.0, result.Low);
-            Assert.Equal(6.0, result.High);
+            Assert.Equal(4, result.Average);
+            Assert.Equal(4, result.Low);
+            Assert.Equal(4, result.High);
         }
 
         [Fact]
         public void CanSetNameFromReference()
         {
             // arrange
-            var emp4 = new SavedStudent("Tomek"); 
-           
+            var emp4 = new StudentInMemory("Tomek");
+
             // act
             this.SetName(emp4, "NewName");
-            
+
             // assert 
             Assert.Equal("NewName", emp4.Name);
-            
+
         }
-        private SavedStudent GetEmployee(string name)
+        private StudentInMemory GetEmployee(string name)
         {
-            return new SavedStudent(name);
+            return new StudentInMemory(name);
         }
 
-        private void SetName(SavedStudent employee, string name)
+        private void SetName(StudentInMemory employee, string name)
         {
             employee.Name = name;
-     
-       }
+
+        }
     }
 }
