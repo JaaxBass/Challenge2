@@ -1,32 +1,32 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ChallengeApp
 {
     public class SavedStudent : StudentBase
     {
-        public override event GradeAddedDelegate GradeAdded;
-        public override event GradeAddedDelegate GradeAddedUnder3;
-        public SavedStudent(string name) : base(name)
+         private const string fileName = "_grades.txt";
+         private string fullfileName;
+         public SavedStudent(string name) : base(name)
         {
-        }
+            fullfileName = $"{name}{fileName}";
+        }      
         public override void AddGrade(double grade)
         {
             if (grade > 0 && grade <= 6)
             {
-                using (var writer = File.AppendText($"{Name}.txt"))
-                using (var writer2 = File.AppendText("audit.txt"))
+                using (var writer = File.AppendText($"{fullfileName}"))
+                using (var writer2 = File.AppendText("audit.txt"))             
                 {
                     writer.WriteLine(grade);
                     writer2.WriteLine($"{Name} - {grade}     {DateTime.UtcNow}");
-
-                    if (grade < 3)
-                    {
-
-                        GradeAddedUnder3(this, new EventArgs());
-                    }
+                    CheckEventGradeadded();
+                if (grade < 3)
+                {
+                    CheckEventGradeaddedUnder3();
                 }
-                GradeAdded(this, new EventArgs());
+                }
             }
             else
             {
@@ -36,27 +36,23 @@ namespace ChallengeApp
         public override Statistics GetStatistics()
         {
             var result = new Statistics();
-
-            using (var reader = File.OpenText($"{Name}.txt"))
+            if (File.Exists($"{fullfileName}"))
             {
-                var line = reader.ReadLine();
-                while (line != null)
+
+                using (var reader = File.OpenText($"{fullfileName}"))
                 {
-                    var number = double.Parse(line);
-                    result.Add(number);
-                    line = reader.ReadLine();
+                    var line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        var number = double.Parse(line);
+                        result.Add(number);
+                        line = reader.ReadLine();
+                    }
                 }
             }
-
             return result;
         }
-
-        public override void AddGrade(string grade)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
+     }
 }
 
 

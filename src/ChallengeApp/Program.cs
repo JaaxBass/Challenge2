@@ -43,16 +43,15 @@ namespace ChallengeApp
                         continue;
                 }
             }
-            WritelineColor(ConsoleColor.DarkMagenta, "\n\nThank you and have a nice dayx! Press any key to Exit.");
+            WritelineColor(ConsoleColor.DarkMagenta, "\n\nThank you and have a nice day! Press any key to Exit.");
             Console.ReadKey();
         }
-
         private static void AddDataInMemory()
         {
             Console.WriteLine("Insert student name:");
             var inMemoryStudent = new StudentInMemory(Console.ReadLine());
             inMemoryStudent.GradeAdded += OnGradeAdded;
-            inMemoryStudent.GradeAddedUnder3 += OnGradeAddedUnderThree;
+            inMemoryStudent.GradeAddedUnder3 += OnGradeAddedUnder3;
             EnterGrade(inMemoryStudent);
 
             var stat = inMemoryStudent.GetStatistics();
@@ -67,7 +66,7 @@ namespace ChallengeApp
             Console.WriteLine("Insert student name:");
             var studentSaved = new SavedStudent(Console.ReadLine());
             studentSaved.GradeAdded += OnGradeAdded;
-            studentSaved.GradeAddedUnder3 += OnGradeAddedUnderThree;
+            studentSaved.GradeAddedUnder3 += OnGradeAddedUnder3;
             EnterGrade(studentSaved);
 
             var stat = studentSaved.GetStatistics();
@@ -89,9 +88,7 @@ namespace ChallengeApp
                 }
                 try
                 {
-                    //double.Parse
-                    var grade = double.Parse(input);
-                    student.AddGrade(grade);
+                    student.AddGrade(input);
                 }
                 catch (FormatException ex)
                 {
@@ -108,10 +105,11 @@ namespace ChallengeApp
 
         static void OnGradeAdded(object sender, EventArgs args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"New grade in added");
+            Console.ResetColor();
         }
-
-        static void OnGradeAddedUnderThree(object sender, EventArgs args)
+        static void OnGradeAddedUnder3(object sender, EventArgs args)
         {
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"Oh no! We should inform student's parents about this fact");

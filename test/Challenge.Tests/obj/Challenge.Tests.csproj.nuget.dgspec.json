@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\KursC#\\Program\\Challenge\\test\\Challenge.Tests\\Challenge.Tests.csproj": {}
+    "C:\\KursC#\\Program\\Challenge\\test\\Challenge.tests\\Challenge.Tests.csproj": {}
   },
   "projects": {
     "C:\\KursC#\\Program\\Challenge\\src\\ChallengeApp\\ChallengeApp.csproj": {
@@ -56,14 +56,14 @@
         }
       }
     },
-    "C:\\KursC#\\Program\\Challenge\\test\\Challenge.Tests\\Challenge.Tests.csproj": {
+    "C:\\KursC#\\Program\\Challenge\\test\\Challenge.tests\\Challenge.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\KursC#\\Program\\Challenge\\test\\Challenge.Tests\\Challenge.Tests.csproj",
+        "projectUniqueName": "C:\\KursC#\\Program\\Challenge\\test\\Challenge.tests\\Challenge.Tests.csproj",
         "projectName": "Challenge.Tests",
-        "projectPath": "C:\\KursC#\\Program\\Challenge\\test\\Challenge.Tests\\Challenge.Tests.csproj",
+        "projectPath": "C:\\KursC#\\Program\\Challenge\\test\\Challenge.tests\\Challenge.Tests.csproj",
         "packagesPath": "C:\\Users\\Jacek\\.nuget\\packages\\",
-        "outputPath": "C:\\KursC#\\Program\\Challenge\\test\\Challenge.Tests\\obj\\",
+        "outputPath": "C:\\KursC#\\Program\\Challenge\\test\\Challenge.tests\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Jacek\\AppData\\Roaming\\NuGet\\NuGet.Config"
